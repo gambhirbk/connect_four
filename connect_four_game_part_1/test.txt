@@ -1,0 +1,49 @@
+ # Gambhir Kunwar
+ # 04/01/2020
+
+ 
+ Testing summary:
+
+ File 1: game_manager_test.py
+    * test the constructor 
+    * try testing with valid values for attributes and if they're equal 
+    * check for all the attributes and find ways to test
+    * valid inputs: all the attributes can be tested for valid input 
+
+    * the update method is long and possibly could be broken into the testable method. As I am 
+    working on part 2, I will work with TAs if there is any method that can be generated could be tested
+    * it is harder to test update method because it is long and currently uses Processing 
+
+    Our group brainstormed ideas below. I am still working on how to create a method separately to test the ideas we have below. I structure mine as that of Dr. Mullen in homework 10.
+
+    Before the game starts:
+        empty array
+        all spot available
+        game status = not started
+    The game starts - player 1:
+        player 1 play -
+        the array is filled with 1 spot
+        game status = in progress
+    Game in progress:
+        player 1 cannot play anymore - invalid
+        player 2 cannot put in the same spot - invalid
+        player 2 put in an available spot
+        the array is filled with 2 spots
+        magic square checker does not return true - invalid
+        game status = in progress
+    Game is over:
+        player 2 cannot play anymore - invalid
+        player 1 turn - valid
+        player 1 wins whatever position - valid
+        magic square checker returns true - valid
+        game status = over
+
+    Once ai is added, I will try to test if the disk is landed in the right slot. 
+
+ File 2: board_test.py
+    * test the constructor 
+    * try testing with valid values for attributes and if they're equal 
+
+ File 3: disk_test.py
+    * test the constructor
+    * try testing with valid values for attributes and if they're equal 

@@ -1,0 +1,119 @@
+# Gambhir Kunwar 
+# 04/01/2020
+
+Time Taken: 25 hours 
+Group: Collin Michael, Kelly Tran, Minh, Raj, Randy Ramili
+
+file 1: connect_four_part1.pyde
+    * setup: the size of the screen window. this is a function of rows, columns, and slot size
+    * draw: main loop in the processing that will call the update method from the GameManger class
+    * mousepressed: set up for the mouse click event by players
+    * mousereleased: set up for the mouse release event
+
+    The data structure used: a dictionary for SPACE
+
+file 2: Game Manager
+    * Class: Game Manger 
+        * constructor (__init__):
+            * game state, game progress or finish(controlled using boolean)
+            * player turn as boolean
+            * player turn as boolean
+            * disk array: since python does not have an array (we use a list of lists) containing 
+                          disk objects in a particular location 
+            * dist list: contains all disks
+            * empty slot list: tracks how many empty slots available in each disk array columns
+            * initializing gameboard
+
+            Data structure: * list of list(array) for disk array. Since Python does not have a built-in array, 
+                            a list of list data structures makes sense to use. 
+                            * used list for the list of disk
+                            * used list
+
+
+        * method: update()
+            * display board when the game begins
+            * check how many slots in each disk array column is open
+            * if computer's turn, drop disk in a random available spot
+            * for each disk in the disk list, check its state and display accordingly for hovering, falling or settling state
+                * hovering position of a disk is a function of mouse position
+                * falling position of disk uses the disk speed attribute
+                * once the disk has settled, add it's a position to the disk array
+                    and check for 4 in a row (diagonal, horizontal and vertical) to know who window
+                * check for the game over by checking for no empty slots in the disk array or if payer or computer won 
+                    * once game over, prompt player name and save to .txt file
+                    * the game loop ends
+        
+        Pseudocode 
+                    - class GameManager:
+                    create new board = Board()
+                    all_disks = list()
+                    current_board [[0 0][0 0]] # for 2 * 2 board game
+                    # for 6*7 board 
+                    current_board [[0 0 0 0 0 0 0] [0 0 0 0 0 0 0] [0 0 0 0 0 0 0]  
+                                   [0 0 0 0 0 0 0] [0 0 0 0 0 0 0] [0 0 0 0 0 0 0]]
+
+                    function draw():
+                        board.display()
+                        turn = 1
+                        if mouseClickedfromexternal(x,y):
+                            if top_position not filled:
+                                if turn is 1:
+                                    color = Yellow
+                                else:
+                                    color = Red
+                                disk = new Disk(color)
+                                disk.fall
+                                while disk.y <= SPACE-disk.radius:
+                                    disk.y = 1+disk.y
+                                all_disk[position] = True
+                                turn = 1 - turn
+
+                        board.display()
+                        board.magic_square() = True:
+                            print(turn,'win')
+
+        * handle_mousepress
+            * if disk array is empty or the last disk has settled, start a new disk when mouse pressed
+            * particular color for a disk is generated depending on whose turn it is 
+            * if computer's turn call a mouse click and delay update loop to stimulate making a decision
+
+    * Computer Vs Human 
+        * human has red disks and computer has yellow disks 
+        * use for loop to check where the human disks land and make a 
+          legal move to fill the empty position
+        * using for loop for 6*7 board can make the program inefficient and slow
+        * probably will still use for or while loop as I am comfortable using those loops 
+
+file 2: board.py
+
+**Board class
+    *constructor (__init__)
+        * board color setup
+    * display 
+        * position lines as a function of slot size, rows, columns 
+            and screen window dimensions 
+
+    Psuedocode:
+        class Board:
+        attribute: column
+        attribute: row
+
+        function display:
+            draw vertical lines:
+                divide SPACE by column
+                draw line thickness = (space - (2*radius * column)) / column
+            draw horizontal lines:
+                divide SPACE by row
+                draw line thickness = (space - (2*radius * row)) / row
+
+file 3: disk.py
+    ** class: Disk
+     * constructor (__init__)
+        * describing the state (if hovering, falling, or settling represented as boolean)
+        * color, speed of falling, and size
+    * hovering
+        * boolean way to set the disk to hover
+    * settling
+        * boolean way to set the disk to settled
+    * display
+        * generate ellipse which is dependent on player color, and function of slope size 
